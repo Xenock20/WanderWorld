@@ -18,8 +18,8 @@ body {
   background-position: center center;
 }
 
-.container{
-    z-index: 5;
+.container {
+  z-index: 5;
 }
 
 .overlay {
@@ -40,7 +40,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 5px solid #c6a800;
+  border: 5px solid #009688;
   border-radius: 25px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Sombra suave */
 }
@@ -115,3 +115,108 @@ body {
   color: #555; /* Color de texto gris */
 }
 
+/* Estilos generales para el header */
+header {
+  background-color: #009688; /* Azul turquesa o Azul del océano */
+  color: #fff;
+  padding: 10px 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
+
+/* Estilos para el contenido del header */
+.header-content {
+  display: flex;
+  flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas más pequeñas */
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px; /* Limita el ancho del contenido del header */
+  margin: 0 auto; /* Centra el contenido horizontalmente */
+}
+
+/* Estilos para el logo */
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+/* Estilos para el icono del logo */
+.logo-icon {
+  font-size: 36px; /* Tamaño del icono */
+  margin-right: 10px; /* Espacio entre el icono y el nombre de la red social */
+}
+
+/* Estilos para el nombre de la red social */
+.logo-text {
+  font-size: 24px; /* Tamaño del texto del nombre de la red social */
+  font-weight: bold; /* Hace que el texto sea más audaz */
+  color: #333; /* Color del texto (negro) */
+}
+
+/* Estilos para la navegación en el header */
+.navigation ul {
+  list-style: none;
+  padding: 0;
+  text-align: right; /* Alinea la navegación a la derecha en pantallas más pequeñas */
+}
+
+.navigation ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+.navigation ul li a {
+  text-decoration: none;
+  color: #e2e2e2;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+/* Estilos para el perfil de usuario */
+.user-profile {
+  display: flex;
+  align-items: center;
+  font-size: 18px; /* Tamaño de fuente para el nombre de usuario */
+  color: #333; /* Color del texto del nombre de usuario (negro) */
+}
+
+/* Estilos para el icono de usuario */
+.user-profile i {
+  font-size: 24px; /* Tamaño del icono de usuario */
+  margin-right: 10px; /* Espacio entre el icono y el nombre de usuario */
+  color: #ffffff; /* Color del icono de usuario (azul turquesa) */
+  transition: all 0.2s;
+}
+
+/* Estilos para el icono de cerrar sesión */
+.user-profile a {
+  text-decoration: none; /* Elimina la subrayado predeterminado del enlace */
+  font-size: 24px; /* Tamaño del icono de cerrar sesión */
+  margin-left: 10px; /* Espacio entre el nombre de usuario y el icono de cerrar sesión */
+}
+
+.user-profile a > i:hover {
+  color: rgb(255, 59, 59);
+}
+
+/* Cambia el color del enlace al pasar el cursor por encima */
+.navigation ul li a:hover {
+  color: #ffffff; /* Rosa coral */
+}
+
+/* Media query para pantallas más pequeñas (ejemplo: dispositivos móviles) */
+@media screen and (max-width: 768px) {
+  .header-content {
+    flex-direction: column; /* Cambia la dirección de los elementos a vertical */
+    align-items: flex-start; /* Alinea los elementos a la izquierda */
+  }
+
+  .navigation ul {
+    text-align: left; /* Alinea la navegación a la izquierda */
+  }
+
+  .logo img {
+    margin-right: 0; /* Elimina el margen entre el logo y la navegación */
+  }
+}
