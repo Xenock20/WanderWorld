@@ -16,9 +16,11 @@ body {
   background-image: url("../images/backgroundRepeat.jpg");
   background-repeat: repeat;
   background-position: center center;
+  z-index: -1;
 }
 
-.container {
+.container,
+.cont-feed {
   z-index: 5;
 }
 
@@ -123,6 +125,7 @@ header {
   position: fixed;
   width: 100%;
   top: 0;
+  z-index: 10;
 }
 
 /* Estilos para el contenido del header */
@@ -220,3 +223,169 @@ header {
     margin-right: 0; /* Elimina el margen entre el logo y la navegación */
   }
 }
+
+/* Estilos generales para la publicación */
+.post {
+  background-color: #fff;
+  margin: 20px auto;
+  width: 80%;
+  max-width: 600px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+/* Estilos para la información del usuario */
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.user-info img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-info span {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* Estilos para el contenido de la publicación */
+.post-content {
+  font-size: 18px;
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+
+/* Estilos para los iconos de acciones (like, comentarios, etc.) */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.actions i {
+  margin-right: 5px;
+  color: #555;
+}
+
+/* Estilos para la sección de comentarios */
+.comment-section {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.comment-section input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.comment-section button {
+  background-color: #0073e6;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.comment-section button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos para los comentarios */
+.comments .comment {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.comments .comment img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.comments .comment span {
+  font-weight: bold;
+}
+
+.cont-feed {
+  position: relative;
+}
+
+.suggested-person {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #e1e1e1; /* Borde suave */
+  border-radius: 5px;
+  background-color: #fff; /* Fondo blanco */
+}
+
+.suggested-person img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.suggested-info {
+  flex: 1; /* Ocupa el espacio disponible */
+}
+
+.suggested-info p {
+  margin: 0;
+}
+
+.follow-button {
+  background-color: #0073e6;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.follow-button:hover {
+  background-color: #0056b3;
+}
+
+.content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-top: 35%; /* Agrega un margen superior igual o mayor que la altura del encabezado */
+  z-index: 5;
+}
+
+.cont-feed {
+  width: 70%; /* Ajusta el tamaño según tus necesidades */
+  /* Resto de los estilos para los posts */
+}
+
+.suggested-container {
+  margin-top: 20px;
+  width: 30%; /* Ajusta el tamaño según tus necesidades */
+  background-color: #f0f0f0; /* Color de fondo de la sección de sugerencias */
+  display: block;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.suggested-container > h2 {
+    text-align: center;
+}
+
