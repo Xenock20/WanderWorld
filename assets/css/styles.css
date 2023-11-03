@@ -363,20 +363,23 @@ header {
 
 .content-wrapper {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: start;
-  margin-top: 35%; /* Agrega un margen superior igual o mayor que la altura del encabezado */
   z-index: 5;
+  padding: 0px 10px;
+  margin: auto;
 }
 
 .cont-feed {
   width: 70%; /* Ajusta el tamaño según tus necesidades */
   /* Resto de los estilos para los posts */
+  margin-top: 50px;
 }
 
 .suggested-container {
-  margin-top: 20px;
   width: 30%; /* Ajusta el tamaño según tus necesidades */
+  margin-top: 70px;
+  margin-right: 20px;
   background-color: #f0f0f0; /* Color de fondo de la sección de sugerencias */
   display: block;
   padding: 10px;
@@ -386,6 +389,184 @@ header {
 }
 
 .suggested-container > h2 {
-    text-align: center;
+  text-align: center;
 }
 
+/* Estilos generales para la página de perfil */
+.profile {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  z-index: 5;
+  margin: auto;
+}
+
+.profile-principal {
+  margin-top: 40px;
+  background-color: #d4d2d2;
+  border-radius: 10px;
+  margin-top: 70px;
+}
+
+/* Estilos para la sección de información del perfil */
+.profile-info {
+  text-align: center;
+  padding: 20px;
+  background-color: #fff; /* Fondo blanco para resaltar la información del perfil */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  border-radius: 10px 10px 0px 0px;
+  margin-bottom: 20px;
+}
+
+.profile-info img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover; /* Ajusta la imagen a la forma del círculo */
+  border: 4px solid #0073e6; /* Borde azul alrededor de la imagen */
+  margin-bottom: 15px;
+}
+
+.profile-info h1 {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.profile-info p {
+  font-size: 16px;
+  color: #555; /* Color de texto gris */
+  margin: 5px 0;
+}
+
+.profile-info button {
+  background-color: #0073e6;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s; /* Transición suave en el cambio de color */
+}
+
+.profile-info button:hover {
+  background-color: #0056b3; /* Cambia el color de fondo al pasar el mouse */
+}
+
+/* Estilos para la sección de seguidores y seguidos */
+.profile-followers {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.followers,
+.following {
+  margin: 0 20px;
+  text-align: center;
+}
+
+.followers h2,
+.following h2 {
+  font-size: 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+ul li img {
+  width: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* Estilos para la sección de seguidores y seguidos */
+.profile-followers {
+  display: flex;
+  justify-content: space-between;
+}
+
+.followers,
+.following {
+  flex: 1;
+  text-align: center;
+  padding: 20px;
+  background-color: #fff; /* Fondo blanco para resaltar la información */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  border-radius: 10px;
+}
+
+.followers h2,
+.following h2 {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.followers ul,
+.following ul {
+  list-style: none;
+  padding: 0;
+}
+
+.followers li,
+.following li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.followers li img,
+.following li img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.followers li span,
+.following li span {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Estilos específicos para la lista de seguidores */
+.followers ul {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Estilos específicos para la lista de usuarios seguidos */
+.following ul {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Añadir margen a los elementos seguidos para mayor separación */
+.following li {
+  margin-right: 20px;
+}
+
+/* Añadir margen al último elemento de la fila para una mejor alineación */
+.following li:nth-child(3n) {
+  margin-right: 0;
+}
+
+/* Estilos para la sección de publicaciones */
+.profile-posts {
+  width: 80%;
+  margin: 50px auto;
+  /* Agrega estilos para mostrar las publicaciones del usuario aquí */
+}
