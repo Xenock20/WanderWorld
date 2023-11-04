@@ -1,3 +1,7 @@
+<?php
+    include 'sesion.php';
+?>
+
 <div class="overlay"></div>
 <header>
     <div class="header-content">
@@ -19,8 +23,8 @@
         </div>
         <div class="user-profile">
             <i class="fas fa-user"></i> <!-- Icono de usuario de Font Awesome -->
-            <span>Nombre de Usuario</span>
-            <a href="../login.php">
+            <span><?php echo $user?></span>
+            <a href="../includes/logout.php">
                 <i class="fas fa-sign-out-alt"></i> <!-- Icono de cerrar sesión de Font Awesome -->
             </a>
         </div>

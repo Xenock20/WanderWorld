@@ -9,7 +9,9 @@
 </head>
 
 <body>
-    <?php include './../includes/header.php'; ?>
+    <?php 
+    include './../includes/header.php'; 
+    ?>
 
     <div class="content-wrapper">
         <div class="cont-feed">

@@ -9,21 +9,25 @@
 </head>
 
 <body>
-    <?php include './../includes/header.php'; ?>
+    <?php 
+    include './../includes/header.php'; 
+    include './../includes/sesion.php';
+    include './../includes/imgdesco.php';
+    ?>
 
     <div class="profile">
         <div class="profile-principal">
             <div class="profile-info">
                 <img src="../assets/images/profile.png" alt="Nombre de Usuario">
-                <h1>Nombre de Usuario</h1>
-                <p>Información adicional del usuario, como ubicación, edad, etc.</p>
+                <h1><?php echo $user?></h1>
+                <p><?php echo $info?></p>
                 <button id="editProfileBtn">Editar perfil</button>
             </div>
 
             <div id="editProfileModal" class="modal">
                 <div class="modal-content">
                     <h2>Editar perfil</h2>
-                    <form action="tu_script_php.php" method="POST" enctype="multipart/form-data">
+                    <form action="../includes/desc.php" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="newUsername">Nuevo nombre de usuario:</label>
                             <input type="text" name="newUsername" id="newUsername" placeholder="Nuevo nombre de usuario">

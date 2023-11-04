@@ -1,13 +1,35 @@
 <?php
-    $username = $_POST['user'];
-    $password = $_POST['password'];
+session_start();
 
-    $queryusuario = mysqli_query($conn, "SELECT * FROM users WHERE username = '$username'");
-    $nr = mysqli_num_rows($queryusuario);
-    $buscarpass = mysqli_fetch_array($queryusuario);
+if (empty($_POST['user']) || empty($_POST['password'])) {
+    echo '<div class="alert">completa los campos</div>';
+}else{
 
-    if(($nr == 1) && (password_verify($password, $buscarpass['password_hash']))){
-        header("Location: pages/index.php");
-        exit();
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    require_once "cn.php";
+
+    $user = $_POST["user"];
+    $password = $_POST["password"];
+
+    $sql = "SELECT * FROM users WHERE username = '$user'";
+    $resultado = $conn->query($sql);
+
+    if ($resultado->num_rows == 1) {
+        $fila = $resultado->fetch_assoc();
+        if (password_verify($password, $fila["password_hash"])) {
+            $_SESSION["loggedin"] = true;
+            $_SESSION["user"] = $fila["username"];
+            $_SESSION["info"] = $fila["descripcion"];
+            $_SESSION["img"] = $fila['img'];
+            header("location: pages/index.php");
+        } else {
+            echo "Contraseña incorrecta.";
+        }
+    } else {
+        echo "Usuario no encontrado.";
     }
+
+    $conn->close();
+}}
 ?>
+

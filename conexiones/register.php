@@ -8,7 +8,7 @@ if(!empty($_POST["register"])){
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $nation = $_POST['nationality'];
 
-        $sql = $conn->query("INSERT INTO Users (username, email, password_hash, nationality, date_joined) VALUES ('$user', '$mail', '$password', '$nation',NOW())");
+        $sql = $conn->query("INSERT INTO Users (username, email, password_hash, nationality, date_joined, img, descripcion) VALUES ('$user', '$mail', '$password', '$nation',NOW())", NULL, NULL);
         if($sql==1){
             header("Location: login.php"); // Redirige a bienvenido.php
             exit();
