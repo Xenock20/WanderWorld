@@ -776,7 +776,7 @@ select {
   height: 40px;
 }
 
-button {
+.btn-submit-setting {
   display: block;
   width: 100%;
   padding: 10px;
@@ -789,6 +789,6 @@ button {
   transition: background-color 0.3s;
 }
 
-button:hover {
+.btn-submit-setting:hover {
   background-color: #0056b3;
 }

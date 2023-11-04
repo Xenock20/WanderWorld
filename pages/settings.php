@@ -59,7 +59,7 @@
             </div>
 
             <div class="form-group">
-                <button type="submit">Guardar Cambios</button>
+                <button type="submit" class="btn-submit-setting">Guardar Cambios</button>
             </div>
         </form>
     </div>
