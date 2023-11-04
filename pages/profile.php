@@ -43,6 +43,8 @@
 
 
         <div class="profile-posts">
+            <?php include './../includes/addPost.php'; ?>
+
             <div class="post">
                 <div class="user-info">
                     <img src="../assets/images/profile.png" alt="Nombre de Usuario">

@@ -14,7 +14,6 @@
                 <li><a href="index.php"><i class="fas fa-home"></i> Inicio</a></li>
                 <li><a href="profile.php"><i class="fas fa-user"></i> Perfil</a></li>
                 <li><a href="explore.php"><i class="fas fa-compass"></i> Explorar</a></li>
-                <li><a href="#"><i class="fas fa-bell"></i> Notificaciones</a></li>
                 <li><a href="settings.php"><i class="fas fa-cog"></i> Configuración</a></li>
             </ul>
         </div>
