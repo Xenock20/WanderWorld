@@ -671,7 +671,7 @@ ul li img {
   background-color: #fff;
   overflow: auto;
   width: 90%;
-  height: 400px;
+  height: 70%;
   max-width: 500px;
   margin: 100px auto;
   padding: 20px;
@@ -724,4 +724,71 @@ form {
 
 #saveChangesBtn:hover {
   background-color: #0056b3; /* Cambia el color de fondo al pasar el mouse */
+}
+
+.settings-container {
+  width: 80%;
+  margin: auto;
+  margin-top: 70px;
+  max-width: 600px;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 5;
+}
+
+.form-group {
+  margin: 10px auto;
+  width: 100%;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px 0px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"]{
+  width: 95%;
+  padding: 10px 15px;
+}
+
+select {
+  height: 40px;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #0073e6;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
 }
