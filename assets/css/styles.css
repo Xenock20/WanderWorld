@@ -659,10 +659,69 @@ ul li img {
 }
 
 .modal-content textarea {
-    width: 90%;
-    height: 200px;
-    max-width: 500px; /* Ajusta el ancho máximo según tus preferencias */
-    padding: 10px;
-    max-height: 600px; /* Ajusta la altura máxima según tus preferencias */
-    resize: none; /* Evita que se pueda redimensionar el textarea manualmente */
+  width: 90%;
+  height: 150px;
+  max-width: 500px; /* Ajusta el ancho máximo según tus preferencias */
+  padding: 10px;
+  max-height: 600px; /* Ajusta la altura máxima según tus preferencias */
+  resize: none; /* Evita que se pueda redimensionar el textarea manualmente */
+}
+
+.modal-content {
+  background-color: #fff;
+  overflow: auto;
+  width: 90%;
+  height: 400px;
+  max-width: 500px;
+  margin: 100px auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para el formulario */
+form {
+  margin-top: 20px;
+}
+
+/* Estilos para cada grupo de formulario (label + input/textarea) */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group textarea,
+.form-group input[type="file"] {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  font-size: 16px;
+}
+
+.form-group textarea {
+  height: 150px; /* Altura ajustable según tus necesidades */
+}
+
+/* Estilos para el botón */
+#saveChangesBtn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #0073e6; /* Color de fondo azul */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#saveChangesBtn:hover {
+  background-color: #0056b3; /* Cambia el color de fondo al pasar el mouse */
 }

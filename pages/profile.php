@@ -17,8 +17,51 @@
                 <img src="../assets/images/profile.png" alt="Nombre de Usuario">
                 <h1>Nombre de Usuario</h1>
                 <p>Información adicional del usuario, como ubicación, edad, etc.</p>
-                <button>Editar perfil</button>
+                <button id="editProfileBtn">Editar perfil</button>
             </div>
+
+            <div id="editProfileModal" class="modal">
+                <div class="modal-content">
+                    <h2>Editar perfil</h2>
+                    <form action="tu_script_php.php" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="newUsername">Nuevo nombre de usuario:</label>
+                            <input type="text" name="newUsername" id="newUsername" placeholder="Nuevo nombre de usuario">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="newUserInfo">Nueva información adicional:</label>
+                            <textarea name="newUserInfo" id="newUserInfo" placeholder="Nueva información adicional"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="newProfileImage">Subir nueva foto de perfil:</label>
+                            <input type="file" name="newProfileImage" id="newProfileImage">
+                        </div>
+
+                        <button type="submit" id="saveChangesBtn">Guardar cambios</button>
+                    </form>
+
+                    <button class="close-button" id="closeEditProfileModalBtn">Cerrar</button>
+                </div>
+            </div>
+
+            <script>
+                // Obtener elementos del DOM
+                const editProfileBtn = document.getElementById("editProfileBtn");
+                const editProfileModal = document.getElementById("editProfileModal");
+                const closeEditProfileModalBtn = document.getElementById("closeEditProfileModalBtn");
+
+                // Mostrar el modal al hacer clic en "Editar perfil"
+                editProfileBtn.addEventListener("click", function() {
+                    editProfileModal.style.display = "block";
+                });
+
+                // Cerrar el modal al hacer clic en el botón de cerrar
+                closeEditProfileModalBtn.addEventListener("click", function() {
+                    editProfileModal.style.display = "none";
+                });
+            </script>
 
             <div class="profile-followers">
                 <div class="followers">
