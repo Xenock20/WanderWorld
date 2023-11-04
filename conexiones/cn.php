@@ -5,5 +5,4 @@
     $bd = 'wanderworld';
 
     $conn = new mysqli($servername, $user, $pass, $bd);
-
 ?>

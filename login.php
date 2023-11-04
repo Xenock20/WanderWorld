@@ -14,9 +14,12 @@
         <div class="cont-login">
             <form action="" method="post" class="box-login">
                 <h1>Iniciar Sesión</h1>
-
+                <?php
+                include("conexiones/cn.php");
+                include("conexiones/ingresar.php");
+                ?>
                 <div class="form-control">
-                    <input type="email" class="input-login" name="email" id="email_login" placeholder="Correo">
+                    <input type="text" class="input-login" name="user" id="user_login" placeholder="Username">
                     <input type="password" class="input-login" name="password" id="password_login" placeholder="Contraseña">
                 </div>
                 <div class="form-control">
