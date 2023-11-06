@@ -35,15 +35,9 @@
             </div>
 
             <div class="form-group">
-                <label for="phoneNumber">Número de Teléfono:</label>
-                <input type="tel" name="phoneNumber" id="phoneNumber">
-            </div>
-
-            <div class="form-group">
                 <label for="commentPrivacy">Configuración de Privacidad de Comentarios:</label>
                 <select name="commentPrivacy" id="commentPrivacy">
                     <option value="public">Cualquiera puede comentar</option>
-                    <option value="followed">Solo seguidores pueden comentar</option>
                     <option value="private">Nadie puede comentar</option>
                 </select>
             </div>
