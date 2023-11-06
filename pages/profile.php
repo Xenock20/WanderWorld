@@ -11,14 +11,14 @@
 <body>
     <?php 
     include './../includes/header.php'; 
-    include './../includes/sesion.php';
-    include './../includes/imgdesco.php';
+    //include './../includes/sesion.php';
+    //include './../includes/imgdesco.php';
     ?>
 
     <div class="profile">
         <div class="profile-principal">
             <div class="profile-info">
-                <img src="../assets/images/profile.png" alt="Nombre de Usuario">
+                <img src="<?php echo $img?>" alt="Nombre de Usuario">
                 <h1><?php echo $user?></h1>
                 <p><?php echo $info?></p>
                 <button id="editProfileBtn">Editar perfil</button>

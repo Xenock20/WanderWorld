@@ -1,20 +1,26 @@
 <?php
-if(!empty($_POST["register"])){
-    if(empty($_POST["username"]) or empty($_POST["email"]) or empty($_POST["password"]) or empty($_POST["nationality"])){
-        echo '<div class="alerta">uno de los campos está vacio</div>';
-    }else{
+if (!empty($_POST["register"])) {
+    if (empty($_POST["username"]) || empty($_POST["email"]) || empty($_POST["password"]) || empty($_POST["nationality"])) {
+        echo '<div class="alerta">Uno de los campos está vacío</div>';
+    } else {
         $user = $_POST['username'];
         $mail = $_POST['email'];
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $nation = $_POST['nationality'];
 
-        $sql = $conn->query("INSERT INTO Users (username, email, password_hash, nationality, date_joined, img, descripcion) VALUES ('$user', '$mail', '$password', '$nation',NOW())", NULL, NULL);
-        if($sql==1){
-            header("Location: login.php"); // Redirige a bienvenido.php
+        // Inserta el nuevo usuario en la tabla t_usuarios
+        $sql = $conn->query("INSERT INTO t_usuarios (usuario, correo, password_hash, pais, fecha_registro) VALUES ('$user', '$mail', '$password', '$nation', NOW())");
+
+        if ($sql) {
+            // Obtiene el ID del usuario recién registrado
+            $id_usuario = $conn->insert_id;
+
+            // Inserta un perfil vinculado al usuario
+            $conn->query("INSERT INTO t_perfil (id_usuario, id_foto, nombre_completo, comentario_boolean, info) VALUES ($id_usuario, 1, NULL, 0, NULL)");
+            header("Location: login.php"); // Redirige a la página de inicio de sesión
             exit();
-        }else{
+        } else {
             echo '<div class="alerta">Error al registrar</div>';
         }
     }
 }
-?>

@@ -6,15 +6,17 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 }
 
-require_once "../conexiones/cn.php";
+//require_once "../conexiones/cn.php";
 
 $user = $_SESSION["user"];
-$info = $_SESSION['info'];
-$img = $_SESSION['img'];
+$info = $_SESSION["info"];
+$img = $_SESSION["img"];
+$id_perfil = $_SESSION["idperfil"];
+$id_user = $_SESSION["iduser"];
 //$email = $_SESSION["email"]; depende xd
 
 // Puedes obtener más información del perfil desde la base de datos si es necesario
 // por ejemplo, utilizando la variable $nombre para hacer una consulta adicional.
 
-$conn->close();
+//$conn->close();
 ?>
