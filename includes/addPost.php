@@ -3,10 +3,10 @@
 <div class="modal" id="postModal">
     <div class="modal-content">
         <h2>Agregar un nuevo post</h2>
-        <form>
+        <form action="../conexiones/addPost.php" method="post">
             <label for="postContent">Contenido del post:</label>
-            <textarea id="postContent" rows="4" cols="50"></textarea>
-            <button type="submit">Publicar</button>
+            <textarea id="postContent" name="postContent" rows="4" cols="50"></textarea>
+            <button type="submit" name="addPost">Publicar</button>
         </form>
         <button class="close-button" id="closeModalBtn">Cerrar</button>
     </div>

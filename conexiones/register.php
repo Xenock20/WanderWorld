@@ -16,7 +16,7 @@ if (!empty($_POST["register"])) {
             $id_usuario = $conn->insert_id;
 
             // Inserta un perfil vinculado al usuario
-            $conn->query("INSERT INTO t_perfil (id_usuario, id_foto, nombre_completo, comentario_boolean, info) VALUES ($id_usuario, 1, NULL, $user, NULL)");
+            $conn->query("INSERT INTO t_perfil (id_usuario, id_foto, nombre_completo, comentario_boolean, info) VALUES ($id_usuario, 1, '$user', 0, NULL)");
             header("Location: login.php"); // Redirige a la página de inicio de sesión
             exit();
         } else {
