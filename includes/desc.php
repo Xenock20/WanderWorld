@@ -29,6 +29,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $perfil = $perfil_query->fetch_assoc();
                 $id_foto = $perfil["id_foto"];
 
+                if ($id_foto == 1) {
+                    if ($conn->query("INSERT INTO t_fotos (nombre, tipo_mime, imagen) VALUES ('profile', '$tipo_mime', '$newProgileImage64')")) {
+
+                        $id_foto_new = $conn->insert_id;
+
+                        if ($conn->query("UPDATE t_perfil SET id_foto = '$id_foto_new', info = '$newinfo' WHERE id_usuario = '$id_user'")) {
+                            $img_src = "data:$tipo_mime;base64,$newProgileImage64";
+                            $_SESSION["img"] = $img_src;
+                            header("location: ../pages/profile.php");
+                        }
+                    }
+                }
+
                 if ($conn->query("UPDATE t_fotos SET nombre = '$nombreArchivo', tipo_mime = '$tipo_mime', imagen = '$newProgileImage64' WHERE id_foto = '$id_foto'")) {
                     $img_src = "data:$tipo_mime;base64,$newProgileImage64";
                     $_SESSION["img"] = $img_src;

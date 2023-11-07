@@ -13,6 +13,7 @@ $info = $_SESSION["info"];
 $img = $_SESSION["img"];
 $id_perfil = $_SESSION["idperfil"];
 $id_user = $_SESSION["iduser"];
+$nombre_completo = $_SESSION["nombre_completo"];
 //$email = $_SESSION["email"]; depende xd
 
 // Puedes obtener más información del perfil desde la base de datos si es necesario
