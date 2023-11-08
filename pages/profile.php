@@ -9,8 +9,8 @@
 </head>
 
 <body>
-    <?php 
-    include './../includes/header.php'; 
+    <?php
+    include './../includes/header.php';
     //include './../includes/sesion.php';
     //include './../includes/imgdesco.php';
     ?>
@@ -18,9 +18,9 @@
     <div class="profile">
         <div class="profile-principal">
             <div class="profile-info">
-                <img src="<?php echo $img?>" alt="Nombre de Usuario">
-                <h1><?php echo $user?></h1>
-                <p><?php echo $info?></p>
+                <img src="<?php echo $img ?>" alt="Nombre de Usuario">
+                <h1><?php echo $user ?></h1>
+                <p><?php echo $info ?></p>
                 <button id="editProfileBtn">Editar perfil</button>
             </div>
 
@@ -71,172 +71,69 @@
                 <div class="followers">
                     <h2>Seguidores</h2>
                     <ul>
-                        <li><img src="../assets/images/profile.png" alt="Seguidor 1"> Seguidor 1</li>
-                        <li><img src="../assets/images/profile.png" alt="Seguidor 2"> Seguidor 2</li>
-                        <!-- Agrega más seguidores según sea necesario -->
+                        <?php
+                        require_once "./../conexiones/cn.php";
+
+
+                        // Consulta SQL para obtener los seguidores
+                        $followersQuery = $conn->query("SELECT u.usuario, p.id_foto FROM t_followings f
+                JOIN t_usuarios u ON f.id_usuario_seguidor = u.id_usuario
+                LEFT JOIN t_perfil p ON u.id_usuario = p.id_usuario
+                WHERE f.id_usuario_seguido = $id_user");
+
+                        while ($follower = $followersQuery->fetch_assoc()) {
+                            $followerName = $follower['usuario'];
+                            $followerAvatar = $follower['id_foto'];
+
+                            $imagen_av_query = $conn->query("SELECT imagen, tipo_mime FROM t_fotos WHERE id_foto = $followerAvatar");
+
+                            $imagen_av = $imagen_av_query->fetch_assoc();
+                            $imagenBase64_av = $imagen_av["imagen"];
+                            $tipo_mime_av = $imagen_av["tipo_mime"];
+
+                            $img_src_av = "data:$tipo_mime_av;base64,$imagenBase64_av";
+
+                            echo "<li><img src=\"$img_src_av\" alt=\"$followerAvatar\"> $followerName</li>";
+                        }
+                        ?>
                     </ul>
                 </div>
 
                 <div class="following">
                     <h2>Siguiendo</h2>
                     <ul>
-                        <li><img src="../assets/images/profile.png" alt="Usuario Seguido 1"> Usuario Seguido 1</li>
-                        <li><img src="../assets/images/profile.png" alt="Usuario Seguido 2"> Usuario Seguido 2</li>
-                        <!-- Agrega más usuarios seguidos según sea necesario -->
+                        <?php
+                        // Consulta SQL para obtener a quiénes sigues
+                        $followingQuery = $conn->query("SELECT u.usuario, p.id_foto FROM t_followings f
+                JOIN t_usuarios u ON f.id_usuario_seguido = u.id_usuario
+                LEFT JOIN t_perfil p ON u.id_usuario = p.id_usuario
+                WHERE f.id_usuario_seguidor = $id_user");
+
+                        while ($following = $followingQuery->fetch_assoc()) {
+                            $followingName = $following['usuario'];
+                            $followerAvatar = $following['id_foto'];
+
+                            $imagen_av_query = $conn->query("SELECT imagen, tipo_mime FROM t_fotos WHERE id_foto = $followerAvatar");
+
+                            $imagen_av = $imagen_av_query->fetch_assoc();
+                            $imagenBase64_av = $imagen_av["imagen"];
+                            $tipo_mime_av = $imagen_av["tipo_mime"];
+
+                            $img_src_av = "data:$tipo_mime_av;base64,$imagenBase64_av";
+
+                            echo "<li><img src=\"$img_src_av\" alt=\"$followerAvatar\"> $followerName</li>";
+                        }
+                        ?>
                     </ul>
                 </div>
             </div>
+
         </div>
 
 
         <div class="profile-posts">
             <?php include './../includes/addPost.php'; ?>
-
-            <div class="post">
-                <div class="user-info">
-                    <img src="../assets/images/profile.png" alt="Nombre de Usuario">
-                    <span>Nombre de Usuario</span>
-                </div>
-                <p class="post-content">
-                    Esto es el contenido de la publicación. Puede incluir texto, imágenes y más.
-                </p>
-                <div class="actions">
-                    <div class="like">
-                        <i class="fas fa-heart"></i> <span>25 Likes</span>
-                    </div>
-                    <div class="comments">
-                        <i class="fas fa-comment"></i> <span>10 Comentarios</span>
-                    </div>
-                </div>
-                <div class="comment-section">
-                    <input type="text" placeholder="Añadir un comentario...">
-                    <button>Publicar</button>
-                </div>
-                <div class="comments">
-                    <div class="comment">
-                        <img src="../assets/images/profile.png" alt="Nombre del Comentarista">
-                        <span>Nombre del Comentarista:</span>
-                        <p>Este es un comentario en la publicación. Puede incluir texto y más.</p>
-                    </div>
-                    <!-- Puedes agregar más comentarios aquí -->
-                </div>
-            </div>
-            <div class="post">
-                <div class="user-info">
-                    <img src="../assets/images/profile.png" alt="Nombre de Usuario">
-                    <span>Nombre de Usuario</span>
-                </div>
-                <p class="post-content">
-                    Esto es el contenido de la publicación. Puede incluir texto, imágenes y más.
-                </p>
-                <div class="actions">
-                    <div class="like">
-                        <i class="fas fa-heart"></i> <span>25 Likes</span>
-                    </div>
-                    <div class="comments">
-                        <i class="fas fa-comment"></i> <span>10 Comentarios</span>
-                    </div>
-                </div>
-                <div class="comment-section">
-                    <input type="text" placeholder="Añadir un comentario...">
-                    <button>Publicar</button>
-                </div>
-                <div class="comments">
-                    <div class="comment">
-                        <img src="../assets/images/profile.png" alt="Nombre del Comentarista">
-                        <span>Nombre del Comentarista:</span>
-                        <p>Este es un comentario en la publicación. Puede incluir texto y más.</p>
-                    </div>
-                    <!-- Puedes agregar más comentarios aquí -->
-                </div>
-            </div>
-            <div class="post">
-                <div class="user-info">
-                    <img src="../assets/images/profile.png" alt="Nombre de Usuario">
-                    <span>Nombre de Usuario</span>
-                </div>
-                <p class="post-content">
-                    Esto es el contenido de la publicación. Puede incluir texto, imágenes y más.
-                </p>
-                <div class="actions">
-                    <div class="like">
-                        <i class="fas fa-heart"></i> <span>25 Likes</span>
-                    </div>
-                    <div class="comments">
-                        <i class="fas fa-comment"></i> <span>10 Comentarios</span>
-                    </div>
-                </div>
-                <div class="comment-section">
-                    <input type="text" placeholder="Añadir un comentario...">
-                    <button>Publicar</button>
-                </div>
-                <div class="comments">
-                    <div class="comment">
-                        <img src="../assets/images/profile.png" alt="Nombre del Comentarista">
-                        <span>Nombre del Comentarista:</span>
-                        <p>Este es un comentario en la publicación. Puede incluir texto y más.</p>
-                    </div>
-                    <!-- Puedes agregar más comentarios aquí -->
-                </div>
-            </div>
-            <div class="post">
-                <div class="user-info">
-                    <img src="../assets/images/profile.png" alt="Nombre de Usuario">
-                    <span>Nombre de Usuario</span>
-                </div>
-                <p class="post-content">
-                    Esto es el contenido de la publicación. Puede incluir texto, imágenes y más.
-                </p>
-                <div class="actions">
-                    <div class="like">
-                        <i class="fas fa-heart"></i> <span>25 Likes</span>
-                    </div>
-                    <div class="comments">
-                        <i class="fas fa-comment"></i> <span>10 Comentarios</span>
-                    </div>
-                </div>
-                <div class="comment-section">
-                    <input type="text" placeholder="Añadir un comentario...">
-                    <button>Publicar</button>
-                </div>
-                <div class="comments">
-                    <div class="comment">
-                        <img src="../assets/images/profile.png" alt="Nombre del Comentarista">
-                        <span>Nombre del Comentarista:</span>
-                        <p>Este es un comentario en la publicación. Puede incluir texto y más.</p>
-                    </div>
-                    <!-- Puedes agregar más comentarios aquí -->
-                </div>
-            </div>
-            <div class="post">
-                <div class="user-info">
-                    <img src="../assets/images/profile.png" alt="Nombre de Usuario">
-                    <span>Nombre de Usuario</span>
-                </div>
-                <p class="post-content">
-                    Esto es el contenido de la publicación. Puede incluir texto, imágenes y más.
-                </p>
-                <div class="actions">
-                    <div class="like">
-                        <i class="fas fa-heart"></i> <span>25 Likes</span>
-                    </div>
-                    <div class="comments">
-                        <i class="fas fa-comment"></i> <span>10 Comentarios</span>
-                    </div>
-                </div>
-                <div class="comment-section">
-                    <input type="text" placeholder="Añadir un comentario...">
-                    <button>Publicar</button>
-                </div>
-                <div class="comments">
-                    <div class="comment">
-                        <img src="../assets/images/profile.png" alt="Nombre del Comentarista">
-                        <span>Nombre del Comentarista:</span>
-                        <p>Este es un comentario en la publicación. Puede incluir texto y más.</p>
-                    </div>
-                    <!-- Puedes agregar más comentarios aquí -->
-                </div>
-            </div>
+            <?php include './../includes/post.php'; ?>
         </div>
     </div>
 

@@ -38,6 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $img_src = "data:$tipo_mime;base64,$newProgileImage64";
                             $_SESSION["img"] = $img_src;
                             header("location: ../pages/profile.php");
+                            exit();
                         }
                     }
                 }

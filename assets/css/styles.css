@@ -368,6 +368,7 @@ header {
   z-index: 5;
   padding: 0px 10px;
   margin: auto;
+  width: 80%;
 }
 
 .cont-feed {
@@ -401,6 +402,7 @@ header {
   align-items: start;
   z-index: 5;
   margin: auto;
+  width: 80%;
 }
 
 .profile-principal {
