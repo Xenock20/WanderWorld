@@ -4,6 +4,9 @@ session_start();
 if (isset($_POST['addPost'])) {
     // Obtén el contenido del post del formulario
     $contenido = $_POST['postContent'];
+    $lat = $_POST['latitud'];
+    $long = $_POST['longitud'];
+
 
     require_once "cn.php";
 
@@ -26,6 +29,9 @@ if (isset($_POST['addPost'])) {
 
             // Ejecuta la consulta
             if ($stmt->execute()) {
+                $id_publicacion = $conn->insert_id;
+
+                $conn->query("INSERT INTO t_mapas(latitud, longitud, id_publicacion) VALUES ($lat,$long, $id_publicacion)"); 
                 header("location: ../pages/index.php");
             } else {
                 echo "Error al agregar el post: " . $stmt->error;
