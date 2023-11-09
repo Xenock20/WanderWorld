@@ -42,7 +42,7 @@ if (isset($_POST['id_publicacion'])) {
             echo "Error al eliminar 'Me gusta'.";
         }
     }
-
+//asdjasjd
     $conn->close();
 } else {
     echo "No se proporcionó una ID de publicación válida.";
