@@ -58,6 +58,19 @@ if ($result->num_rows > 0) {
         $rowLikes = $resultLikes->fetch_assoc();
         $like_count = $rowLikes["like_count"];
 
+        // Verificar si la publicación tiene una ubicación asociada
+        $tiene_mapa = false;  // Asume que la publicación no tiene un mapa por defecto
+
+        // Realizar una consulta para verificar si hay una ubicación asociada
+        $mapa_query = $conn->query("SELECT latitud, longitud FROM t_mapas WHERE id_publicacion = $id_post");
+
+        if ($mapa_query->num_rows > 0) {
+            $tiene_mapa = true;
+            $mapa_datos = $mapa_query->fetch_assoc();
+            $latitud = $mapa_datos["latitud"];
+            $longitud = $mapa_datos["longitud"];
+        }
+
         // Ahora puedes generar los contenedores de publicaciones con los datos
         echo '<div class="post">';
         echo '<div class="user-info">';
@@ -65,6 +78,14 @@ if ($result->num_rows > 0) {
         echo '<span>' . $usuario_name . '</span>';
         echo '</div>';
         echo '<p class="post-content">' . $contenido . '</p>';
+        if ($tiene_mapa) {
+            echo '<div class="map-container">';
+            echo '<div id="map-' . $id_post . '" class="post-map" style="height: 300px; z-index: 1;"></div>';
+            echo '</div>';
+            echo '<script>';
+            echo 'addMap("map-' . $id_post . '", ' . $latitud . ', ' . $longitud . ');';
+            echo '</script>';
+        }
         echo '<div class="actions">';
         echo '<form class="like" id="likeForm" action="../conexiones/addLike.php" method="POST">';
         echo '<input type="hidden" name="id_publicacion" value="' . $id_post . '">';
@@ -121,6 +142,7 @@ if ($result->num_rows > 0) {
         }
         echo '</div>';
         echo '</div>';
+        //echo '<script> let map; function initMap(id, lt, lg) {let map = new google.maps.Map(document.getElementById("map"), {zoom: 8,center: {lat: ' . $latitud . ', lng: ' . $longitud . '}, streetViewControl: false, mapTypeControl: false}); </script>';
     }
 } else {
 }
