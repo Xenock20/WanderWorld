@@ -322,6 +322,35 @@ ALTER TABLE `t_publicaciones`
   ADD CONSTRAINT `t_publicaciones_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `t_usuarios` (`id_usuario`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
+-- Primero, elimina la restricción actual
+ALTER TABLE t_mapas DROP FOREIGN KEY t_mapas_ibfk_1;
+
+-- Luego, agrega la restricción con ON DELETE CASCADE
+ALTER TABLE t_mapas ADD CONSTRAINT t_mapas_ibfk_1
+    FOREIGN KEY (id_publicacion)
+    REFERENCES t_publicaciones (id_publicacion)
+    ON DELETE CASCADE;
+
+    -- Primero, elimina la restricción actual en t_comentarios
+ALTER TABLE t_comentarios DROP FOREIGN KEY t_comentarios_ibfk_2;
+
+-- Luego, agrega la restricción con ON DELETE CASCADE
+ALTER TABLE t_comentarios ADD CONSTRAINT t_comentarios_ibfk_2
+    FOREIGN KEY (id_publicacion)
+    REFERENCES t_publicaciones (id_publicacion)
+    ON DELETE CASCADE;
+
+-- Primero, elimina la restricción actual en t_likes
+ALTER TABLE t_likes DROP FOREIGN KEY t_likes_ibfk_1;
+
+-- Luego, agrega la restricción con ON DELETE CASCADE
+ALTER TABLE t_likes ADD CONSTRAINT t_likes_ibfk_1
+    FOREIGN KEY (id_publicacion)
+    REFERENCES t_publicaciones (id_publicacion)
+    ON DELETE CASCADE;
+
+
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

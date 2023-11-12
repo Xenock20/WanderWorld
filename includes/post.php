@@ -1,7 +1,7 @@
 <?php
 // Conecta a la base de datos (asegúrate de tener una conexión establecida)
 
-function obtenerPublicaciones($id_user_perfil, $conn)
+function obtenerPublicaciones($id_user_perfil, $conn, $id_user_session)
 {
     // Conecta a la base de datos (asegúrate de tener una conexión establecida
 
@@ -67,8 +67,16 @@ function obtenerPublicaciones($id_user_perfil, $conn)
             // Ahora puedes generar los contenedores de publicaciones con los datos
             echo '<div class="post">';
             echo '<div class="user-info">';
+            echo '<div class="user-info-primary">';
             echo '<img src="' . $img_src . '" alt="' . $usuario_name . '">';
             echo '<a href="profile.php?id=' . $usuario_id . '">' . $usuario_name . '</a>';
+            echo '</div>';
+            if ($id_user_session == $usuario_id) {
+                echo '<form action="../conexiones/eliminarPublicacion.php" method="POST" class="delete-section">';
+                echo '<input type="hidden" name="id_publicacion" value="' . $id_post . '">';
+                echo '<button type="submit" name="deletePost">Eliminar Publicación</button>';
+                echo '</form>';
+            }
             echo '</div>';
             echo '<p class="post-content">' . $contenido . '</p>';
             if ($tiene_mapa) {
@@ -125,9 +133,23 @@ function obtenerPublicaciones($id_user_perfil, $conn)
 
                     // Muestra los comentarios en el formato HTML deseado
                     echo '<div class="comment">';
+                    echo '<div class="coment-cont">';
+                    echo '<div class="coment-cont-info">';
                     echo '<img src="' . $img_src_coment . '" alt="' . $user_coment_name . '">';
                     echo '<a href="profile.php?id=' . $id_usuario_coment . '">' . $user_coment_name . ':  </a>';
-                    echo '<p>  ' . $contenido . '</p>';
+                    echo '</div>';
+                    echo '<div class="post-content-container">';
+                    echo '<p class="post-content">' . $contenido . '</p>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '<div class="coment-opt">';
+                    if ($id_usuario_coment == $id_user_session) {
+                        echo '<form action="../conexiones/eliminarComentario.php" method="POST" class="delete-section">';
+                        echo '<input type="hidden" name="id_comentario" value="' . $rowComent["id_comentario"] . '">';
+                        echo '<button type="submit" class="btn-del-com" name="deleteComment">Eliminar Comentario</button>';
+                        echo '</form>';
+                    }
+                    echo '</div>';
                     echo '</div>';
                 }
             } else {

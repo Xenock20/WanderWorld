@@ -118,7 +118,7 @@
     <div class="profile-posts">';
         include './../includes/addPost.php';
         include './../includes/post.php';
-        obtenerPublicaciones($id_user_perfil, $conn);
+        obtenerPublicaciones($id_user_perfil, $conn, $id_user);
         echo '</div>
     </div>';
         echo '<script>
@@ -248,7 +248,7 @@
     <div class="profile-posts">';
         include './../includes/map.php';
         include './../includes/post.php';
-        obtenerPublicaciones($id_user_perfil, $conn);
+        obtenerPublicaciones($id_user_perfil, $conn, $id_user);
         echo '</div>
     </div>';
     }

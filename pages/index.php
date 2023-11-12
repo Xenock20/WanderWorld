@@ -19,7 +19,7 @@
             <?php include './../includes/addPost.php'; ?>
             <?php include './../includes/map.php'; ?>
             <?php include './../includes/post.php'; ?>
-            <?php obtenerPublicaciones($id_user, $conn); ?>
+            <?php obtenerPublicaciones($id_user, $conn, $id_user); ?>
         </div>
         <?php
         // Conexión a la base de datos (asegúrate de tener una conexión establecida)
