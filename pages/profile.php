@@ -111,9 +111,9 @@
 
                         while ($following = $followingQuery->fetch_assoc()) {
                             $followingName = $following['usuario'];
-                            $followerAvatar = $following['id_foto'];
+                            $followingAvatar = $following['id_foto'];
 
-                            $imagen_av_query = $conn->query("SELECT imagen, tipo_mime FROM t_fotos WHERE id_foto = $followerAvatar");
+                            $imagen_av_query = $conn->query("SELECT imagen, tipo_mime FROM t_fotos WHERE id_foto = $followingAvatar");
 
                             $imagen_av = $imagen_av_query->fetch_assoc();
                             $imagenBase64_av = $imagen_av["imagen"];
@@ -121,7 +121,7 @@
 
                             $img_src_av = "data:$tipo_mime_av;base64,$imagenBase64_av";
 
-                            echo "<li><img src=\"$img_src_av\" alt=\"$followerAvatar\"> $followerName</li>";
+                            echo "<li><img src=\"$img_src_av\" alt=\"$followingAvatar\"> $followingName</li>";
                         }
                         ?>
                     </ul>

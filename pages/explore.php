@@ -52,17 +52,27 @@
                         if (data.length > 0) {
                             // Si hay resultados, mostrar cada perfil encontrado
                             data.forEach(function(perfil) {
-                                var perfilHTML = '<div class="profile-card">' +
-                                    '<img class="profile-img" src="' + perfil.img_src_b + '" alt="Foto de perfil">' +
-                                    '<h2 class="profile-name">' + perfil.nombre_completo + '</h2>' +
-                                    '<p class="profile-followers">' + perfil.num_seguidores + ' seguidores</p>' +
-                                    '<form action="../conexiones/follow.php" method="post">' +
-                                    '<input type="hidden" name="id_user_follow_you" value="' + perfil.id_usuario + '">' +
-                                    '<input type="hidden" name="id_user_follow_my" value="' +  <?php echo $id_user; ?> + '">' +
-                                    '<button class="follow-button" id="' + perfil.id_usuario + '">Seguir</button>' +
-                                    '</form>' +
-                                    '</div>';
-                                $('#resultados').append(perfilHTML);
+                                if (<?php echo $id_user; ?> !== perfil.id_usuario) {
+                                    var perfilHTML = '<div class="profile-card">' +
+                                        '<img class="profile-img" src="' + perfil.img_src_b + '" alt="Foto de perfil">' +
+                                        '<h2 class="profile-name">' + perfil.nombre_completo + '</h2>' +
+                                        '<p class="profile-followers">' + perfil.num_seguidores + ' seguidores</p>' +
+                                        '<form action="../conexiones/follow.php" method="post">' +
+                                        '<input type="hidden" name="id_user_follow_you" value="' + perfil.id_usuario + '">' +
+                                        '<input type="hidden" name="id_user_follow_my" value="' + <?php echo $id_user; ?> + '">';
+
+                                    // Verificar si el usuario sigue al perfil
+                                    if (perfil.sigue_usuario) {
+                                        perfilHTML += '<button class="unfollow-button" name="unfollow" id="' + perfil.id_usuario + '">Dejar de seguir</button>';
+                                    } else {
+                                        perfilHTML += '<button class="follow-button" name="follow" id="' + perfil.id_usuario + '">Seguir</button>';
+                                    }
+
+                                    perfilHTML += '</form>' +
+                                        '</div>';
+
+                                    $('#resultados').append(perfilHTML);
+                                }
                             });
                         } else {
                             // Si no hay resultados, mostrar un mensaje indicando que no se encontraron
