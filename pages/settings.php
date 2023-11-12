@@ -1,3 +1,31 @@
+<?php
+
+session_start();
+
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+    header("location: ../login.php");
+    exit;
+}
+
+// Conexión a la base de datos (asegúrate de que tu conexión está configurada correctamente)
+include "../conexiones/cn.php";
+
+// Obtén el ID de usuario de la sesión
+$id_usuario = $_SESSION["iduser"];
+
+// Realiza la consulta para obtener datos del perfil del usuario
+$query = "SELECT * FROM t_usuarios WHERE id_usuario = $id_usuario";
+$result = $conn->query($query);
+
+if ($result->num_rows > 0) {
+    $perfil = $result->fetch_assoc();
+} else {
+    echo "No se encontraron datos para el usuario con ID $id_usuario";
+}
+
+// Cierra la conexión
+$conn->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +44,7 @@
         <form action="update_settings.php" method="POST">
             <div class="form-group">
                 <label for="email">Correo Electrónico:</label>
-                <input type="email" name="email" id="email" required>
+                <input type="email" name="email" id="email" value="<?php echo $perfil['correo']?>" required>
             </div>
 
             <div class="form-group">
