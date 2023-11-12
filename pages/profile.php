@@ -190,13 +190,14 @@
         <ul>';
 
         // Consulta SQL para obtener los seguidores
-        $followersQuery = $conn->query("SELECT u.usuario, p.id_foto FROM t_followings f
+        $followersQuery = $conn->query("SELECT u.usuario, p.id_foto, u.id_usuario FROM t_followings f
     JOIN t_usuarios u ON f.id_usuario_seguidor = u.id_usuario
     LEFT JOIN t_perfil p ON u.id_usuario = p.id_usuario
     WHERE f.id_usuario_seguido = $id_user_perfil");
 
         while ($follower = $followersQuery->fetch_assoc()) {
             $followerName = $follower['usuario'];
+            $followerName_id = $follower['id_usuario'];
             $followerAvatar = $follower['id_foto'];
 
             $imagen_av_query = $conn->query("SELECT imagen, tipo_mime FROM t_fotos WHERE id_foto = $followerAvatar");
@@ -218,13 +219,14 @@
         <ul>';
 
         // Consulta SQL para obtener a quiénes sigues
-        $followingQuery = $conn->query("SELECT u.usuario, p.id_foto FROM t_followings f
+        $followingQuery = $conn->query("SELECT u.usuario, p.id_foto, u.id_usuario FROM t_followings f
     JOIN t_usuarios u ON f.id_usuario_seguido = u.id_usuario
     LEFT JOIN t_perfil p ON u.id_usuario = p.id_usuario
     WHERE f.id_usuario_seguidor = $id_user_perfil");
 
         while ($following = $followingQuery->fetch_assoc()) {
             $followingName = $following['usuario'];
+            $followingName_id = $following['id_usuario'];
             $followingAvatar = $following['id_foto'];
 
             $imagen_av_query = $conn->query("SELECT imagen, tipo_mime FROM t_fotos WHERE id_foto = $followingAvatar");
@@ -235,7 +237,7 @@
 
             $img_src_av = "data:$tipo_mime_av;base64,$imagenBase64_av";
 
-            echo "<li><img src=\"$img_src_av\" alt=\"$followingAvatar\"> $followingName</li>";
+            echo '<li><img src="' . $img_src_av . '" alt="' . $followingAvatar . '"><a href="profile.php?id=' . $followingName_id . '">' . $followingName . '</a></li>';
         }
 
         echo '</ul>
