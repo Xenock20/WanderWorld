@@ -53,10 +53,14 @@
                             // Si hay resultados, mostrar cada perfil encontrado
                             data.forEach(function(perfil) {
                                 var perfilHTML = '<div class="profile-card">' +
-                                    '<img class="profile-img" src="obtener_imagen.php?id_foto=' + perfil.id_foto + '" alt="Foto de perfil">' +
+                                    '<img class="profile-img" src="' + perfil.img_src_b + '" alt="Foto de perfil">' +
                                     '<h2 class="profile-name">' + perfil.nombre_completo + '</h2>' +
                                     '<p class="profile-followers">' + perfil.num_seguidores + ' seguidores</p>' +
-                                    '<button class="follow-button" data-id="' + perfil.id_perfil + '">Seguir</button>' +
+                                    '<form action="../conexiones/follow.php" method="post">' +
+                                    '<input type="hidden" name="id_user_follow_you" value="' + perfil.id_usuario + '">' +
+                                    '<input type="hidden" name="id_user_follow_my" value="' +  <?php echo $id_user; ?> + '">' +
+                                    '<button class="follow-button" id="' + perfil.id_usuario + '">Seguir</button>' +
+                                    '</form>' +
                                     '</div>';
                                 $('#resultados').append(perfilHTML);
                             });

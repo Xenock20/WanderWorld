@@ -797,6 +797,10 @@ select {
 }
 
 .cont-explore {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
   padding: 20px;
   z-index: 5;
   background-color: #fff;
@@ -818,7 +822,12 @@ select {
   margin-bottom: 20px;
 }
 
+#buscador > input {
+  width: 80%;
+}
+
 #resultados{
+  width: 90%;
   overflow-y: scroll;
   max-height: calc(65%);
   padding: 20px 15px;
