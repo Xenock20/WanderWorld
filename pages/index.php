@@ -53,7 +53,7 @@
                 echo '<form class="suggested-person" action="../conexiones/follow.php" method="post">';
                 echo '<img src="' . $img_src_follow . '" alt="' . $nombre_follow . '">';
                 echo '<div class="suggested-info">';
-                echo '<p>' . $nombre_follow . '</p>';
+                echo '<a href="profile.php?id=' . $usuario_id_follow . '">' . $nombre_follow . '</a>';
                 echo '</div>';
                 echo '<input type="hidden" name="id_user_follow_you" value="' . $usuario_id_follow . '">';
                 echo '<input type="hidden" name="id_user_follow_my" value="' . $id_user . '">';

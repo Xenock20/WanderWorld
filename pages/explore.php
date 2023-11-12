@@ -55,7 +55,7 @@
                                 if (<?php echo $id_user; ?> !== perfil.id_usuario) {
                                     var perfilHTML = '<div class="profile-card">' +
                                         '<img class="profile-img" src="' + perfil.img_src_b + '" alt="Foto de perfil">' +
-                                        '<h2 class="profile-name">' + perfil.nombre_completo + '</h2>' +
+                                        '<a href="profile.php?id='+ perfil.id_usuario +'" class="profile-name">' + perfil.nombre_completo + '</a>' +
                                         '<p class="profile-followers">' + perfil.num_seguidores + ' seguidores</p>' +
                                         '<form action="../conexiones/follow.php" method="post">' +
                                         '<input type="hidden" name="id_user_follow_you" value="' + perfil.id_usuario + '">' +
