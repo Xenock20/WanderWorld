@@ -10,9 +10,12 @@ if (isset($_POST['addPost'])) {
 
     require_once "cn.php";
 
-    // Valida si el contenido del post no está vacío
+    // Valida si el contenido del post no está vacío y si la ubicación se ha ingresado
     if (empty($contenido)) {
         echo "El contenido del post no puede estar vacío.";
+    } elseif (empty($lat) || empty($long)) {
+        echo '<script>alert("Por favor, ingresa una ubicación antes de subir la publicación.");</script>';
+        
     } else {
         // Conecta a la base de datos (supongamos que ya tienes una conexión a la base de datos)
 
