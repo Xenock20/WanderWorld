@@ -357,7 +357,7 @@ header {
   cursor: pointer;
 }
 
-.unfollow-button{
+.unfollow-button {
   background-color: #e60000;
   color: #fff;
   border: none;
@@ -367,7 +367,8 @@ header {
   cursor: pointer;
 }
 
-.unfollow-button:hover{
+.unfollow-button:hover,
+.unfollow:hover {
   background-color: #b30000;
 }
 
@@ -783,7 +784,7 @@ textarea {
 input[type="text"],
 input[type="email"],
 input[type="tel"],
-input[type="password"]{
+input[type="password"] {
   width: 95%;
   padding: 10px 15px;
 }
@@ -824,7 +825,6 @@ select {
   overflow: hidden; /* Evita que el contenido desborde */
 }
 
-
 .titulo-explore {
   font-size: 24px;
   margin-bottom: 20px;
@@ -839,13 +839,16 @@ select {
   width: 80%;
 }
 
-#resultados{
+#resultados {
   width: 90%;
   overflow-y: scroll;
   max-height: calc(65%);
   padding: 20px 15px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Configuración del grid */
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(200px, 1fr)
+  ); /* Configuración del grid */
   grid-gap: 20px;
 }
 
@@ -907,3 +910,66 @@ select {
   background-color: #2980b9;
 }
 
+.comment {
+  justify-content: space-between;
+}
+
+.coment-cont {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+}
+
+.coment-cont-info {
+  display: flex;
+  align-items: center;
+}
+
+.post-content-container {
+  white-space: normal;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+  height: auto;
+}
+
+.post-content {
+  margin-bottom: auto; /* Empujar el contenido hacia abajo */
+  white-space: normal;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+  height: auto
+}
+
+.btn-del-com{
+  height: 100%;
+  background-color: red;
+  color: white;
+  padding: 5px;
+}
+
+
+.user-info{
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-info > form{
+  display: flex;
+  align-items: center;
+}
+
+.user-info > form > button {
+  height: 100%;
+  background-color: red;
+  color: white;
+  padding: 5px;
+}
+
+.user-info-primary{
+  display: flex;
+  align-items: center;
+}
