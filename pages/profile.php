@@ -10,20 +10,22 @@
 
 <body>
     <?php
+    $id_user_perfil = isset($_GET['id']) ? $_GET['id'] : null;
     include './../includes/header.php';
+    require_once "../conexiones/cn.php";
     //include './../includes/sesion.php';
     //include './../includes/imgdesco.php';
-    ?>
 
-    <div class="profile">
+    if ($id_user == $id_user_perfil) {
+        echo '<div class="profile">
         <div class="profile-principal">
             <div class="profile-info">
-                <img src="<?php echo $img ?>" alt="Nombre de Usuario">
-                <h1><?php echo $user ?></h1>
-                <p><?php echo $info ?></p>
+                <img src="' . $img . '" alt="Nombre de Usuario">
+                <h1>' . $user_profile . '</h1>
+                <p>' . $info . '</p>
                 <button id="editProfileBtn">Editar perfil</button>
             </div>
-
+    
             <div id="editProfileModal" class="modal">
                 <div class="modal-content">
                     <h2>Editar perfil</h2>
@@ -32,111 +34,207 @@
                             <label for="newUsername">Nuevo nombre de usuario:</label>
                             <input type="text" name="newUsername" id="newUsername" placeholder="Nuevo nombre de usuario">
                         </div>
-
+    
                         <div class="form-group">
                             <label for="newUserInfo">Nueva información adicional:</label>
                             <textarea name="newUserInfo" id="newUserInfo" placeholder="Nueva información adicional"></textarea>
                         </div>
-
+    
                         <div class="form-group">
                             <label for="newProfileImage">Subir nueva foto de perfil:</label>
                             <input type="file" name="newProfileImage" id="newProfileImage">
                         </div>
-
+    
                         <button type="submit" id="saveChangesBtn">Guardar cambios</button>
                     </form>
-
+    
                     <button class="close-button" id="closeEditProfileModalBtn">Cerrar</button>
                 </div>
-            </div>
+            </div>';
 
-            <script>
-                // Obtener elementos del DOM
-                const editProfileBtn = document.getElementById("editProfileBtn");
-                const editProfileModal = document.getElementById("editProfileModal");
-                const closeEditProfileModalBtn = document.getElementById("closeEditProfileModalBtn");
+        require_once "./../conexiones/cn.php";
 
-                // Mostrar el modal al hacer clic en "Editar perfil"
-                editProfileBtn.addEventListener("click", function() {
-                    editProfileModal.style.display = "block";
-                });
+        echo '<div class="profile-followers">
+        <div class="followers">
+            <h2>Seguidores</h2>
+            <ul>';
 
-                // Cerrar el modal al hacer clic en el botón de cerrar
-                closeEditProfileModalBtn.addEventListener("click", function() {
-                    editProfileModal.style.display = "none";
-                });
-            </script>
+        // Consulta SQL para obtener los seguidores
+        $followersQuery = $conn->query("SELECT u.usuario, p.id_foto FROM t_followings f
+        JOIN t_usuarios u ON f.id_usuario_seguidor = u.id_usuario
+        LEFT JOIN t_perfil p ON u.id_usuario = p.id_usuario
+        WHERE f.id_usuario_seguido = $id_user");
 
-            <div class="profile-followers">
-                <div class="followers">
-                    <h2>Seguidores</h2>
-                    <ul>
-                        <?php
-                        require_once "./../conexiones/cn.php";
+        while ($follower = $followersQuery->fetch_assoc()) {
+            $followerName = $follower['usuario'];
+            $followerAvatar = $follower['id_foto'];
 
+            $imagen_av_query = $conn->query("SELECT imagen, tipo_mime FROM t_fotos WHERE id_foto = $followerAvatar");
 
-                        // Consulta SQL para obtener los seguidores
-                        $followersQuery = $conn->query("SELECT u.usuario, p.id_foto FROM t_followings f
-                JOIN t_usuarios u ON f.id_usuario_seguidor = u.id_usuario
-                LEFT JOIN t_perfil p ON u.id_usuario = p.id_usuario
-                WHERE f.id_usuario_seguido = $id_user");
+            $imagen_av = $imagen_av_query->fetch_assoc();
+            $imagenBase64_av = $imagen_av["imagen"];
+            $tipo_mime_av = $imagen_av["tipo_mime"];
 
-                        while ($follower = $followersQuery->fetch_assoc()) {
-                            $followerName = $follower['usuario'];
-                            $followerAvatar = $follower['id_foto'];
+            $img_src_av = "data:$tipo_mime_av;base64,$imagenBase64_av";
 
-                            $imagen_av_query = $conn->query("SELECT imagen, tipo_mime FROM t_fotos WHERE id_foto = $followerAvatar");
+            echo "<li><img src=\"$img_src_av\" alt=\"$followerAvatar\"> $followerName</li>";
+        }
 
-                            $imagen_av = $imagen_av_query->fetch_assoc();
-                            $imagenBase64_av = $imagen_av["imagen"];
-                            $tipo_mime_av = $imagen_av["tipo_mime"];
-
-                            $img_src_av = "data:$tipo_mime_av;base64,$imagenBase64_av";
-
-                            echo "<li><img src=\"$img_src_av\" alt=\"$followerAvatar\"> $followerName</li>";
-                        }
-                        ?>
-                    </ul>
-                </div>
-
-                <div class="following">
-                    <h2>Siguiendo</h2>
-                    <ul>
-                        <?php
-                        // Consulta SQL para obtener a quiénes sigues
-                        $followingQuery = $conn->query("SELECT u.usuario, p.id_foto FROM t_followings f
-                JOIN t_usuarios u ON f.id_usuario_seguido = u.id_usuario
-                LEFT JOIN t_perfil p ON u.id_usuario = p.id_usuario
-                WHERE f.id_usuario_seguidor = $id_user");
-
-                        while ($following = $followingQuery->fetch_assoc()) {
-                            $followingName = $following['usuario'];
-                            $followingAvatar = $following['id_foto'];
-
-                            $imagen_av_query = $conn->query("SELECT imagen, tipo_mime FROM t_fotos WHERE id_foto = $followingAvatar");
-
-                            $imagen_av = $imagen_av_query->fetch_assoc();
-                            $imagenBase64_av = $imagen_av["imagen"];
-                            $tipo_mime_av = $imagen_av["tipo_mime"];
-
-                            $img_src_av = "data:$tipo_mime_av;base64,$imagenBase64_av";
-
-                            echo "<li><img src=\"$img_src_av\" alt=\"$followingAvatar\"> $followingName</li>";
-                        }
-                        ?>
-                    </ul>
-                </div>
-            </div>
-
+        echo '</ul>
         </div>
+    
+        <div class="following">
+            <h2>Siguiendo</h2>
+            <ul>';
 
+        // Consulta SQL para obtener a quiénes sigues
+        $followingQuery = $conn->query("SELECT u.usuario, p.id_foto FROM t_followings f
+        JOIN t_usuarios u ON f.id_usuario_seguido = u.id_usuario
+        LEFT JOIN t_perfil p ON u.id_usuario = p.id_usuario
+        WHERE f.id_usuario_seguidor = $id_user");
 
-        <div class="profile-posts">
-            <?php include './../includes/addPost.php'; ?>
-            <?php include './../includes/post.php'; ?>
+        while ($following = $followingQuery->fetch_assoc()) {
+            $followingName = $following['usuario'];
+            $followingAvatar = $following['id_foto'];
+
+            $imagen_av_query = $conn->query("SELECT imagen, tipo_mime FROM t_fotos WHERE id_foto = $followingAvatar");
+
+            $imagen_av = $imagen_av_query->fetch_assoc();
+            $imagenBase64_av = $imagen_av["imagen"];
+            $tipo_mime_av = $imagen_av["tipo_mime"];
+
+            $img_src_av = "data:$tipo_mime_av;base64,$imagenBase64_av";
+
+            echo "<li><img src=\"$img_src_av\" alt=\"$followingAvatar\"> $followingName</li>";
+        }
+
+        echo '</ul>
         </div>
     </div>
+    </div>
+    
+    <div class="profile-posts">';
+        include './../includes/addPost.php';
+        include './../includes/post.php';
+        obtenerPublicaciones($id_user_perfil, $conn);
+        echo '</div>
+    </div>';
+        echo '<script>
+    // Obtener elementos del DOM
+    const editProfileBtn = document.getElementById("editProfileBtn");
+    const editProfileModal = document.getElementById("editProfileModal");
+    const closeEditProfileModalBtn = document.getElementById("closeEditProfileModalBtn");
 
+    // Mostrar el modal al hacer clic en "Editar perfil"
+    editProfileBtn.addEventListener("click", function() {
+        editProfileModal.style.display = "block";
+    });
+
+    // Cerrar el modal al hacer clic en el botón de cerrar
+    closeEditProfileModalBtn.addEventListener("click", function() {
+        editProfileModal.style.display = "none";
+    });
+</script>';
+    } else {
+        // Código para el perfil de otro usuario
+
+        $perfil_query_p = $conn->query("SELECT * FROM t_perfil WHERE id_usuario = $id_user_perfil");
+            if ($perfil_query_p->num_rows == 1) {
+                $perfil = $perfil_query_p->fetch_assoc();
+                $name_profile_secun = $perfil["nombre_completo"];
+                $info_profile_secun = $perfil["info"];
+                $id_profile_secun = $perfil["id_perfil"];
+        
+                // Obtiene la imagen de la base de datos
+                $id_foto_secun = $perfil["id_foto"];
+                $imagen_query_secun = $conn->query("SELECT imagen, tipo_mime FROM t_fotos WHERE id_foto = $id_foto_secun");
+                if ($imagen_query_secun->num_rows == 1) {
+                    $imagen_secun = $imagen_query_secun->fetch_assoc();
+                    $imagenBase64_secun = $imagen_secun["imagen"];
+                    $tipo_mime_secun = $imagen_secun["tipo_mime"];
+        
+                    // Construye la URL de la imagen y asigna a $_SESSION["img"]
+                    $img_src_secun = "data:$tipo_mime_secun;base64,$imagenBase64_secun";
+                }
+            }
+
+        echo '<div class="profile">
+    <div class="profile-principal">
+        <div class="profile-info">
+            <img src="' . $img_src_secun . '" alt="Nombre de Usuario">
+            <h1>' . $name_profile_secun . '</h1>
+            <p>' . $info_profile_secun . '</p>
+        </div>';
+
+        require_once "./../conexiones/cn.php";
+
+        echo '<div class="profile-followers">
+    <div class="followers">
+        <h2>Seguidores</h2>
+        <ul>';
+
+        // Consulta SQL para obtener los seguidores
+        $followersQuery = $conn->query("SELECT u.usuario, p.id_foto FROM t_followings f
+    JOIN t_usuarios u ON f.id_usuario_seguidor = u.id_usuario
+    LEFT JOIN t_perfil p ON u.id_usuario = p.id_usuario
+    WHERE f.id_usuario_seguido = $id_user_perfil");
+
+        while ($follower = $followersQuery->fetch_assoc()) {
+            $followerName = $follower['usuario'];
+            $followerAvatar = $follower['id_foto'];
+
+            $imagen_av_query = $conn->query("SELECT imagen, tipo_mime FROM t_fotos WHERE id_foto = $followerAvatar");
+
+            $imagen_av = $imagen_av_query->fetch_assoc();
+            $imagenBase64_av = $imagen_av["imagen"];
+            $tipo_mime_av = $imagen_av["tipo_mime"];
+
+            $img_src_av = "data:$tipo_mime_av;base64,$imagenBase64_av";
+
+            echo "<li><img src=\"$img_src_av\" alt=\"$followerAvatar\"> $followerName</li>";
+        }
+
+        echo '</ul>
+    </div>
+
+    <div class="following">
+        <h2>Siguiendo</h2>
+        <ul>';
+
+        // Consulta SQL para obtener a quiénes sigues
+        $followingQuery = $conn->query("SELECT u.usuario, p.id_foto FROM t_followings f
+    JOIN t_usuarios u ON f.id_usuario_seguido = u.id_usuario
+    LEFT JOIN t_perfil p ON u.id_usuario = p.id_usuario
+    WHERE f.id_usuario_seguidor = $id_user_perfil");
+
+        while ($following = $followingQuery->fetch_assoc()) {
+            $followingName = $following['usuario'];
+            $followingAvatar = $following['id_foto'];
+
+            $imagen_av_query = $conn->query("SELECT imagen, tipo_mime FROM t_fotos WHERE id_foto = $followingAvatar");
+
+            $imagen_av = $imagen_av_query->fetch_assoc();
+            $imagenBase64_av = $imagen_av["imagen"];
+            $tipo_mime_av = $imagen_av["tipo_mime"];
+
+            $img_src_av = "data:$tipo_mime_av;base64,$imagenBase64_av";
+
+            echo "<li><img src=\"$img_src_av\" alt=\"$followingAvatar\"> $followingName</li>";
+        }
+
+        echo '</ul>
+        </div>
+    </div>
+    </div>
+    
+    <div class="profile-posts">';
+        include './../includes/map.php';
+        include './../includes/post.php';
+        obtenerPublicaciones($id_user_perfil, $conn);
+        echo '</div>
+    </div>';
+    }
+    ?>
 </body>
 
 </html>

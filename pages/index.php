@@ -10,17 +10,19 @@
 
 <body>
     <?php
+    require_once "../conexiones/cn.php";
     include './../includes/header.php';
     ?>
 
     <div class="content-wrapper">
         <div class="cont-feed">
             <?php include './../includes/addPost.php'; ?>
+            <?php include './../includes/map.php'; ?>
             <?php include './../includes/post.php'; ?>
+            <?php obtenerPublicaciones($id_user, $conn); ?>
         </div>
         <?php
         // Conexión a la base de datos (asegúrate de tener una conexión establecida)
-        require_once "../conexiones/cn.php";
 
         // Realiza una consulta SQL para obtener usuarios sugeridos
         $resultFollow = $conn->query("SELECT * FROM t_usuarios WHERE id_usuario != $id_user AND id_usuario NOT IN (SELECT id_usuario_seguido FROM t_followings WHERE id_usuario_seguidor = $id_user) LIMIT 5");

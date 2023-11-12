@@ -8,7 +8,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 //require_once "../conexiones/cn.php";
 
-$user = $_SESSION["user"];
+$user_profile = $_SESSION["user"];
 $info = $_SESSION["info"];
 $img = $_SESSION["img"];
 $id_perfil = $_SESSION["idperfil"];

@@ -16,14 +16,14 @@
         <div class="navigation">
             <ul>
                 <li><a href="index.php"><i class="fas fa-home"></i> Inicio</a></li>
-                <li><a href="profile.php"><i class="fas fa-user"></i> Perfil</a></li>
+                <li><?php echo '<a href="profile.php?id=' . $id_user . '"><i class="fas fa-user"></i> Perfil</a>';?></li>
                 <li><a href="explore.php"><i class="fas fa-compass"></i> Explorar</a></li>
                 <li><a href="settings.php"><i class="fas fa-cog"></i> Configuración</a></li>
             </ul>
         </div>
         <div class="user-profile">
             <i class="fas fa-user"></i> <!-- Icono de usuario de Font Awesome -->
-            <span><?php echo $user?></span>
+            <span><?php echo $user_profile?></span>
             <a href="../includes/logout.php">
                 <i class="fas fa-sign-out-alt"></i> <!-- Icono de cerrar sesión de Font Awesome -->
             </a>
