@@ -367,7 +367,7 @@ header {
   cursor: pointer;
 }
 
-.unfollow-button:hover{
+.unfollow-button:hover, .unfollow:hover{
   background-color: #b30000;
 }
 
@@ -906,4 +906,6 @@ select {
 .follow-button:hover {
   background-color: #2980b9;
 }
+
+
 

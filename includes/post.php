@@ -68,7 +68,7 @@ function obtenerPublicaciones($id_user_perfil, $conn)
             echo '<div class="post">';
             echo '<div class="user-info">';
             echo '<img src="' . $img_src . '" alt="' . $usuario_name . '">';
-            echo '<span>' . $usuario_name . '</span>';
+            echo '<a href="profile.php?id=' . $usuario_id . '">' . $usuario_name . '</a>';
             echo '</div>';
             echo '<p class="post-content">' . $contenido . '</p>';
             if ($tiene_mapa) {
@@ -126,7 +126,7 @@ function obtenerPublicaciones($id_user_perfil, $conn)
                     // Muestra los comentarios en el formato HTML deseado
                     echo '<div class="comment">';
                     echo '<img src="' . $img_src_coment . '" alt="' . $user_coment_name . '">';
-                    echo '<span>' . $user_coment_name . ':  </span>';
+                    echo '<a href="profile.php?id=' . $id_usuario_coment . '">' . $user_coment_name . ':  </a>';
                     echo '<p>  ' . $contenido . '</p>';
                     echo '</div>';
                 }
