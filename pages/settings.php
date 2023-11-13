@@ -73,9 +73,6 @@ $conn->close();
             <div class="form-group">
                 <label for="country">País:</label>
                 <select name="country" id="country">
-                    <option value="usa">Estados Unidos</option>
-                    <option value="canada">Canadá</option>
-                    <option value="mexico">México</option>
                     <!-- Agrega más opciones según los países que desees permitir -->
                 </select>
             </div>
@@ -85,6 +82,28 @@ $conn->close();
             </div>
         </form>
     </div>
+
+    <script>
+    // URL de la API Restcountries
+    const apiUrl = "https://restcountries.com/v3.1/all";
+
+    // Obtener el elemento select
+    const selectPaises = document.getElementById("country");
+
+    // Hacer una solicitud a la API para obtener la lista de países
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        // Iterar sobre la lista de países y agregar opciones al select
+        data.forEach(pais => {
+          const option = document.createElement("option");
+          option.value = pais.name.common;
+          option.text = pais.name.common;
+          selectPaises.add(option);
+        });
+      })
+      .catch(error => console.error("Error al obtener la lista de países", error));
+  </script>
 
 </body>
 
