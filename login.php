@@ -27,8 +27,6 @@
                 </div>
 
                 <div class="form-control">
-                    <a href="olvido_contrasena.html" class="forgot-password">¿Olvidaste tu contraseña?</a>
-                    <span>o</span>
                     <a href="signup.php" class="register">Registrarse</a>
                 </div>
             </form>
