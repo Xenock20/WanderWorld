@@ -16,8 +16,8 @@
             <form action="" method="post" class="box-login">
                 <h1>Registrarse</h1>
                 <?php
-                include("conexiones/cn.php");
-                include("conexiones/register.php")
+                    include("conexiones/cn.php");
+                    include("conexiones/register.php");
                 ?>
                 <div class="form-control">
                     <input type="text" class="input-login" name="username" id="username" placeholder="Nombre de Usuario" >
