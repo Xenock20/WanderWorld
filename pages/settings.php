@@ -63,14 +63,6 @@ $conn->close();
             </div>
 
             <div class="form-group">
-                <label for="commentPrivacy">Configuración de Privacidad de Comentarios:</label>
-                <select name="commentPrivacy" id="commentPrivacy">
-                    <option value="public">Cualquiera puede comentar</option>
-                    <option value="private">Nadie puede comentar</option>
-                </select>
-            </div>
-
-            <div class="form-group">
                 <label for="country">País:</label>
                 <select name="country" id="country">
                     <option value="usa">Estados Unidos</option>
