@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         if ($conn->query("UPDATE t_perfil SET id_foto = '$id_foto_new', info = '$newinfo' WHERE id_usuario = '$id_user'")) {
                             $img_src = "data:$tipo_mime;base64,$newProgileImage64";
                             $_SESSION["img"] = $img_src;
-                            header("location: ../pages/profile.php");
+                            header("location: ../pages/profile.php?id=" . $id_user . "");
                             exit();
                         }
                     }
@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($conn->query("UPDATE t_fotos SET nombre = '$nombreArchivo', tipo_mime = '$tipo_mime', imagen = '$newProgileImage64' WHERE id_foto = '$id_foto'")) {
                     $img_src = "data:$tipo_mime;base64,$newProgileImage64";
                     $_SESSION["img"] = $img_src;
-                    header("location: ../pages/profile.php");
+                            header("location: ../pages/profile.php?id=" . $id_user . "");
                 } else {
                     echo "Error al actualizar la imagen de perfil: ";
                 }
