@@ -5,10 +5,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // Verifica si la solicitud HTTP es 
     $newuser = $_POST['newUsername']; // Obtiene el nuevo nombre de usuario desde el formulario POST
     $newinfo = $_POST['newUserInfo']; // Obtiene la nueva información del usuario desde el formulario POST
 
-     // Validar que los campos no estén vacíos
-     if (empty($newuser) || empty($newinfo)) {
+    if (empty($newuser) || empty($newinfo)) {
         echo "Los campos nombre de usuario e información no pueden estar vacíos.";
-        exit();
+        
     }
 
     require_once "../conexiones/cn.php"; // Incluye el archivo de conexión a la base de datos
