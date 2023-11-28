@@ -10,9 +10,12 @@
 
             <input type="hidden" name="latitud" id="latitud">
             <input type="hidden" name="longitud" id="longitud">
+<div class="box-publicar">
             <button type="submit" name="addPost">Publicar</button>
         </form>
         <button class="close-button" id="closeModalBtn">Cerrar</button>
+</div>
+
     </div>
 
 </div>

@@ -25,7 +25,7 @@
         // Conexión a la base de datos (asegúrate de tener una conexión establecida)
 
         // Realiza una consulta SQL para obtener usuarios sugeridos
-        $resultFollow = $conn->query("SELECT * FROM t_usuarios WHERE id_usuario != $id_user AND id_usuario NOT IN (SELECT id_usuario_seguido FROM t_followings WHERE id_usuario_seguidor = $id_user) LIMIT 5");
+        $resultFollow = $conn->query("SELECT * FROM t_usuarios WHERE id_usuario != $id_user AND id_usuario NOT IN (SELECT id_usuario_seguido FROM t_followings WHERE id_usuario_seguidor = $id_user) LIMIT 8");
 
         echo '<div class="suggested-container">';
         echo '<h2>Sugerencias</h2>';

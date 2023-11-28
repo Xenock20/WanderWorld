@@ -24,7 +24,7 @@
         <div class="user-profile">
             <i class="fas fa-user"></i> <!-- Icono de usuario de Font Awesome -->
             <span><?php echo $user_profile?></span>
-            <a href="../includes/logout.php">
+            <a href="../includes/logout.php" title="Salir">
                 <i class="fas fa-sign-out-alt"></i> <!-- Icono de cerrar sesión de Font Awesome -->
             </a>
         </div>

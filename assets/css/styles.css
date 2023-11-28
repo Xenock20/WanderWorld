@@ -119,7 +119,8 @@ body {
 
 /* Estilos generales para el header */
 header {
-  background-color: #009688; /* Azul turquesa o Azul del océano */
+   /* Azul turquesa o Azul del océano */
+  background-color: #28036a;
   color: #fff;
   padding: 10px 0;
   position: fixed;
@@ -661,7 +662,7 @@ ul li img {
   border: none;
   padding: 10px 20px;
   cursor: pointer;
-  margin-top: 20px;
+  margin-right: 25px;
 }
 
 .modal-content .close-button {
@@ -670,9 +671,8 @@ ul li img {
   border: none;
   padding: 10px 20px;
   cursor: pointer;
-  margin-top: 20px;
-  display: block;
-  margin: 0 auto;
+  margin-left: 25px;
+  display: inline-block; /* Cambia de block a inline-block */
 }
 
 .modal-content textarea {
